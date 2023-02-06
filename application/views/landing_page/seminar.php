@@ -26,7 +26,7 @@
                 <br>
                 <h6>BIAYA</h6>
                 <p class="card-text">Rp. 50.000,00</p>
-                <a href="#" class="btn text-white">Daftar</a>
+                <a href="<?= base_url('landing_page/form_pendaftaran'); ?>" class="btn text-white">Daftar</a>
             </div>
             <br>
             <div class="card-footer text-muted">
