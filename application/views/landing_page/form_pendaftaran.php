@@ -16,19 +16,19 @@
                     <form action="">
                         <div class="mb-3">
                             <label for="formGroupExampleInput" class="form-label">Nama Lengkap</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder" name="Nama Lengkap">
+                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="" name="Nama Lengkap">
                         </div>
                         <div class="mb-3">
                             <label for="formGroupExampleInput2" class="form-label">NIM</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input placeholder" name="NIM">
+                            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="" name="NIM">
                         </div>
                         <div class="mb-3">
                             <label for="formGroupExampleInput2" class="form-label">Email</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input placeholder" name="Email">
+                            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="" name="Email">
                         </div>
                         <div class="mb-3">
                             <label for="formGroupExampleInput2" class="form-label">No.Telepon</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input placeholder" name="No.Telepon">
+                            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="" name="No.Telepon">
                         </div>
                         <br>
                         <select class="form-select" aria-label="Default select example">

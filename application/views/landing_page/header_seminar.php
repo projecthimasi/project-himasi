@@ -8,7 +8,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>assets/vendor/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>assets/css/landingpage.css">
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
 
 <style>
@@ -28,16 +27,7 @@
                 <div class="mx-auto"></div>
                 <ul class="navbar-nav me-3 mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active fw-semibold text-white" href="<?= base_url('landing_page'); ?>">Beranda</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link fw-semibold text-white" href="<?= base_url('landing_page/seminar'); ?>">Seminar</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link fw-semibold text-white" href="#tentangkami">Tentang Kami</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link fw-semibold text-white" href="#galeri">Galeri</a>
+                        <a class="nav-link active fw-semibold text-white m-1 " href="<?= base_url('landing_page'); ?>">| Beranda |</a>
                     </li>
                 </ul>
             </div>

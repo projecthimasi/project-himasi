@@ -20,7 +20,7 @@ footer {
 	content: "";
 	opacity: 0;
 	transition: all 0.2s;
-	height: 2px;
+	height: 1px;
 	width: 100%;
 	background-color: white;
 	position: absolute;
@@ -51,4 +51,12 @@ footer {
 
 .card_pendaftaran {
 	margin-top: 100px;
+}
+
+.figure img {
+	cursor: pointer;
+}
+
+#photo-popup .modal-img {
+	width: 100%;
 }
