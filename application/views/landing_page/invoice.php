@@ -61,12 +61,13 @@
                         </div>
                         <br>
                         <br>
+                        <div class="text-center">
+                            <label for="formFile" class="form-label">Upload Bukti Pembayaran</label>
+                            <input class="form-control" type="file" id="formFile">
+                        </div>
                         <center>
-                            <div class="mx-auto">
-                                <a href="<?= base_url('landing_page/invoice'); ?>" class="btn btn-sm text-white">Upload Gambar</a>
-                            </div>
                             <div class="mx-auto mt-3 d-grid gap-2">
-                                <a href="<?= base_url('landing_page/invoice'); ?>" class="btn text-white">SUBMIT</a>
+                                <a href="<?= base_url('landing_page/selesai'); ?>" class="btn text-white">SUBMIT</a>
                             </div>
                         </center>
                     </div>

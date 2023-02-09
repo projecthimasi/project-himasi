@@ -10,7 +10,7 @@
             </div>
             <div class="card-body">
                 <h6 class="p-2">JADWAL</h6>
-                <p><i class="far fa-clock"> : 09:00 AM</i></p>
+                <p><i class="far fa-clock col-6"> : 09:00 AM</i></p>
                 <p><i class="far fa-calendar-alt"> : 09-03-2023</i></p>
                 <div class="border-bottom"></div>
                 <br>
@@ -26,7 +26,7 @@
                 <br>
                 <h6>BIAYA</h6>
                 <p class="card-text">Rp. 50.000,00</p>
-                <a href="#" class="btn text-white">Daftar</a>
+                <a href="<?= base_url('landing_page/form_pendaftaran'); ?>" class="btn text-white">Daftar</a>
             </div>
             <br>
             <div class="card-footer text-muted">
