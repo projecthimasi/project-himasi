@@ -40,7 +40,7 @@ class Auth extends CI_Controller {
 
         } else {
             echo "<script>
-                alert('NIK anda tidak terdaftar!');
+                alert('email anda tidak terdaftar!');
                 window.location.href = `" . site_url('auth/login') . "`;
              </script>";
         }
