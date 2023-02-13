@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 13, 2023 at 03:23 PM
+-- Generation Time: Feb 13, 2023 at 03:29 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -24,10 +24,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mahasiswa`
+-- Table structure for table `user`
 --
 
-CREATE TABLE `mahasiswa` (
+CREATE TABLE `user` (
   `id` int(11) NOT NULL,
   `nim` varchar(50) NOT NULL,
   `nama` varchar(128) NOT NULL,
@@ -44,9 +44,9 @@ CREATE TABLE `mahasiswa` (
 --
 
 --
--- Indexes for table `mahasiswa`
+-- Indexes for table `user`
 --
-ALTER TABLE `mahasiswa`
+ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -54,9 +54,9 @@ ALTER TABLE `mahasiswa`
 --
 
 --
--- AUTO_INCREMENT for table `mahasiswa`
+-- AUTO_INCREMENT for table `user`
 --
-ALTER TABLE `mahasiswa`
+ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 

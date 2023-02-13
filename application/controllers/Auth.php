@@ -10,7 +10,7 @@ class Auth extends CI_Controller {
 	}
 
 	public function login(){
-		$email = $this->db->get_where('mahasiswa', ['email' => $this->input->post('email', true)])->row();
+		$email = $this->db->get_where('user', ['email' => $this->input->post('email', true)])->row();
         if ($email){
             if(password_verify($this->input->post('password'), $email->password)){
                 if ($email->status == 'admin'){
