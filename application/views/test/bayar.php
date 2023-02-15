@@ -19,17 +19,32 @@
    <center>
       <div class="conatiner">
 
-         <h3>invoice# <?= $no_invoice; ?></h3>
+         <h3>invoice# <?= $pembayaran['no_invoice']; ?></h3>
          <table>
             <tr>
                <td>Nama </td>
                <td>:</td>
-               <td><?= $nama; ?></td>
+               <td><?= $peserta['nama']; ?></td>
+            </tr>
+            <tr>
+               <td>NIM </td>
+               <td>:</td>
+               <td><?= $peserta['nim']; ?></td>
+            </tr>
+            <tr>
+               <td>Pembayaran </td>
+               <td>:</td>
+               <td>Seminar </td>
+            </tr>
+            <tr>
+               <td>HTM </td>
+               <td>:</td>
+               <td>IDR <?= $pembayaran['nominal']; ?></td>
             </tr>
             <tr>
                <td>Total Bayar </td>
                <td>:</td>
-               <td>Rp. <?= $htm; ?></td>
+               <td>Rp. <?= $pembayaran['nominal']; ?></td>
             </tr>
          </table>
 
@@ -46,7 +61,7 @@
    <script type="text/javascript">
       document.getElementById('pay-button').onclick = function() {
          // SnapToken acquired from previous step
-         snap.pay('<?= $snapToken ?>', {
+         snap.pay('<?= $pembayaran['token_snap'] ?>', {
             // Optional
             onSuccess: function(result) {
                /* You may add your own js here, this is just example */

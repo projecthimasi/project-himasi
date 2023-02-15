@@ -1,37 +1,29 @@
 <?php
+
+
+
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class Seminar extends CI_Controller
 {
 
-   public $seminar;
-   public $peserta;
-   public $invoice;
+   private $peserta;
+   private $seminar;
+   private $pembayaran;
+
    public function __construct()
    {
       parent::__construct();
       $this->load->model('Seminar_model');
       $this->load->model('Peserta_model');
-      $this->load->model('Invoice_model');
-      $this->seminar = new Seminar_model();
-      $this->peserta = new Peserta_model();
-      $this->invoice = new Invoice_model();
+      $this->load->model('Pembayaran_model');
+
+      // inisialisai model
+      $this->peserta = new Peserta_model;
+      $this->seminar = new Seminar_model;
+      $this->pembayaran = new Pembayaran_model;
    }
-   /**
-    * Index Page for this controller.
-    *
-    * Maps to the following URL
-    * 		http://example.com/index.php/welcome
-    *	- or -
-    * 		http://example.com/index.php/welcome/index
-    *	- or -
-    * Since this controller is set as the default controller in
-    * config/routes.php, it's displayed at http://example.com/
-    *
-    * So any other public methods not prefixed with an underscore will
-    * map to /index.php/welcome/<method_name>
-    * @see https://codeigniter.com/userguide3/general/urls.html
-    */
+
    public function index()
    {
 
@@ -40,93 +32,60 @@ class Seminar extends CI_Controller
    }
    public function daftar()
    {
-      $this->load->view('test/daftar');
+
+
+      $this->load->library('form_validation');
+      $rules = $this->peserta->rule();
+      $this->form_validation->set_rules($rules);
+
+      if (!$this->form_validation->run()) {
+         return $this->load->view('test/daftar');
+      }
+
+      $this->proses_daftar();
    }
+
    public function proses_daftar()
    {
-      // simpang data dari form pendaftaran ke database peserta
-      $this->peserta->save();
+      // ambil data seminar berdasarkan id
+      $data_seminar = $this->seminar->getById($this->input->post('id_seminar'));
 
-      // ambil data dari database peserta
+      // membuat no_invoice
+      $no_invoice = substr(str_shuffle('0123456789'), 0, 10);
 
+      // set atribut peserta
+      $this->peserta->id            = time();
+      $this->peserta->nim           = $this->input->post('nim',);
+      $this->peserta->nama          = $this->input->post('nama');
+      $this->peserta->email         = $this->input->post('email');
+      $this->peserta->semester      = $this->input->post('semester');
+      $this->peserta->program_studi = $this->input->post('program_studi');
+      $this->peserta->kampus        = $this->input->post('kampus');
+      $this->peserta->no_tlp        = $this->input->post('no_tlp');
+      $this->peserta->simpan();
 
-      $peserta = $this->peserta->getByNim($this->input->post('nim'));
+      // set atribut pembayaran
+      $this->pembayaran->no_invoice = $no_invoice;
+      $this->pembayaran->id_peserta = $this->peserta->id;
+      $this->pembayaran->id_seminar = $data_seminar['id'];
+      $this->pembayaran->nominal = $data_seminar['htm'];
+      $this->pembayaran->customer_name = $this->peserta->nama;
+      $this->pembayaran->customer_noHandphon = $this->peserta->no_tlp;
 
-      // var_dump($peserta);
-      // die;
+      $this->pembayaran->buat_tagihan();
 
-
-      $invoice = $this->generat_invoice();
-
-      $data_invoice = [
-         'no_invoice' => $invoice,
-         'status' => 'pandding',
-         'id_peserta' => $peserta['id'],
-         'id_seminar' => $this->input->post('id_seminar'),
-      ];
-
-      // var_dump($data_invoice);
-      // die;
-      $this->invoice->save($data_invoice);
-      $this->invoice($data_invoice);
+      // simpan data invoice
+      $this->pembayaran->simpan();
+      $this->pembayaran();
    }
 
-
-   public function generat_invoice()
+   public function pembayaran()
    {
-      $permitted_chars = '0123456789';
-      return substr(str_shuffle($permitted_chars), 0, 10);
-   }
-
-   private function invoice($data_invoice)
-   {
-      $data_peserta = $this->peserta->getById($data_invoice['id_peserta']);
-      $data_seminar = $this->seminar->getById($data_invoice['id_seminar']);
-      $snapToken = $this->request_token($data_invoice);
-      $data = [
-         'no_invoice' => $data_invoice['no_invoice'],
-         'nama' => $data_peserta['nama'],
-         'htm' => $data_seminar['htm'],
-         'snapToken' => $snapToken
-      ];
-
-
+      // menampilkan ke view 
+      $data['peserta'] = $this->peserta->getById();
+      $data['seminar'] = $this->seminar->getById($this->pembayaran->id_seminar);
+      $data['pembayaran'] = $this->pembayaran->getByIdPeserta($this->peserta->id);
       $this->load->view('test/bayar', $data);
-   }
-
-
-
-   private function request_token($data_invoice)
-   {
-
-      // Set your Merchant Server Key
-      \Midtrans\Config::$serverKey = 'SB-Mid-server-ZtkJDZbJTLs-rhd_vadnbh4O';
-      // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
-      \Midtrans\Config::$isProduction = false;
-      // Set sanitization on (default)
-      \Midtrans\Config::$isSanitized = true;
-      // Set 3DS transaction for credit card to true
-      \Midtrans\Config::$is3ds = true;
-
-      $data_peserta = $this->peserta->getById($data_invoice['id_peserta']);
-      $data_seminar = $this->seminar->getById($data_invoice['id_seminar']);
-
-
-      $params = array(
-         'transaction_details' => array(
-            'order_id' => $data_invoice['no_invoice'],
-            'gross_amount' => $data_seminar['htm'],
-         ),
-         'customer_details' => array(
-            'first_name' => $data_peserta['nama'],
-            'email' => $data_peserta['email'],
-            'phone' => $data_peserta['no_tlp'],
-         ),
-      );
-
-      $snapToken = \Midtrans\Snap::getSnapToken($params);
-
-
-      return $snapToken;
+      // set data midtram
    }
 }

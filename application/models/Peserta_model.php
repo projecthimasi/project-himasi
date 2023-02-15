@@ -1,28 +1,75 @@
 <?php
+
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class Peserta_model extends CI_Model
 {
-   public function save()
+
+
+   // property
+   public $id;
+   public $nim;
+   public $nama;
+   public $email;
+   public $semester;
+   public $program_studi;
+   public $kampus;
+   public $no_tlp;
+
+   // nama tabale
+   private $_table = 'peserta';
+
+   // method 
+   public function rule()
    {
-      $data = [
-         "nim" => $this->input->post('nim'),
-         "nama" => $this->input->post('nama'),
-         "email" => $this->input->post('email'),
-         "semester" => $this->input->post('semester'),
-         "program_studi" => $this->input->post('program_studi'),
-         "kampus" => $this->input->post('kampus'),
-         "no_tlp" => $this->input->post('no_tlp')
+      return [
+         [
+            'field' => 'nama',
+            'label' => 'Nama',
+            'rules' => 'required|max_length[50]'
+         ],
+         [
+            'field' => 'nim',
+            'label' => 'Nim',
+            'rules' => 'required|max_length[8]'
+         ],
+         [
+            'field' => 'email',
+            'label' => 'Email',
+            'rules' => 'required|valid_email|max_length[50]'
+         ],
+         [
+            'field' => 'no_tlp',
+            'label' => 'Nomor telepon',
+            'rules' => 'required|max_length[15]'
+         ],
+         [
+            'field' => 'program_studi',
+            'label' => 'Program studi',
+            'rules' => 'required'
+         ],
+
       ];
-      $this->db->insert('peserta', $data);
+   }
+   public function simpan()
+   {
+
+      $this->db->insert($this->_table, $this);
    }
 
-   public function getByNim($nim)
+
+   public function getAll()
    {
-      return $this->db->get_where('peserta', array('nim' => $nim))->row_array();
+      return $this->db->get($this->_table)->row_array();
    }
-   public function getById($id)
+
+   public function getByNim()
    {
-      return $this->db->get_where('peserta', array('id' => $id))->row_array();
+      return $this->db->get_where($this->_table, array('nim' => $this->nim))->row_array();
+   }
+
+   public function getById()
+   {
+      return $this->db->get_where($this->_table, array('id' => $this->id))->row_array();
    }
 }
