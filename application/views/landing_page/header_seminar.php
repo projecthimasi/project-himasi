@@ -16,7 +16,7 @@
 
 <body>
     <nav class="navbar fixed-top navbar-expand-lg border-bottom">
-        <div class="container-fluid">
+        <div class="container">
             <a class="navbar-brand pb-2" href="#">
                 <img src="<?= base_url(); ?>assets/image/logo.png" alt="" width="60" height="60">
             </a>
