@@ -28,4 +28,15 @@ class Seminar extends CI_Controller
       $this->load->view('seminar/form_pendaftaran', $data);
       $this->load->view('seminar/footer');
    }
+
+   public function bayar()
+   {
+      $data = [
+         'title' => 'Invoice'
+      ];
+
+      $this->load->view('seminar/header', $data);
+      $this->load->view('seminar/tagihan', $data);
+      $this->load->view('seminar/footer');
+   }
 }

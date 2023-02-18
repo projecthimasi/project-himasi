@@ -18,6 +18,7 @@ a.btn-custom:hover {
 	color: white;
 }
 #form,
-#seminar {
+#seminar,
+#invoice {
 	margin-top: 7rem;
 }

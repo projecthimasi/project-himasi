@@ -1,5 +1,7 @@
-<div class="container mt-5" id="seminar">
-  <div class="display-4 text-center mb-4">Seminar & Workshop</div>
+<div class="container " id="seminar">
+  <div class="display-4 text-center mb-4">
+    Seminar & Workshop
+  </div>
   <div class="row justify-content-center">
     <div class="col-md-8">
       <div class="card shadow mb-5">
@@ -23,7 +25,7 @@
               </div>
               <hr>
 
-              <a href="daftar" class="btn btn-custom mt-5">Daftar Sekarang</a>
+              <a href="seminar/daftar" class="btn btn-custom mt-5">Daftar Sekarang</a>
             </div>
 
 
