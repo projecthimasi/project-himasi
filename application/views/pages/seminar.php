@@ -31,15 +31,10 @@
 
 <section class="section" id="seminar">
    <div class="container">
-      <div class="row">
+      <div class="row ">
          <div class="col-lg-12">
             <div class="section-heading">
-               <h2>Frequently Asked Questions</h2>
-            </div>
-         </div>
-         <div class="offset-lg-3 col-lg-6">
-            <div class="section-heading">
-               <p>Vivamus venenatis eu mi ac mattis. Maecenas ut elementum sapien. Nunc euismod risus ac lobortis congue. Sed erat quam.</p>
+               <h2>Seminar & Workshop</h2>
             </div>
          </div>
       </div>

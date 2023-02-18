@@ -96,6 +96,18 @@
 <!-- ***** Features Small Start ***** -->
 <section class="section" id="activity">
     <div class="container">
+        <div class="row text-white">
+            <div class="col-lg-12">
+                <div class="section-heading">
+                    <h2 class="text-white">Kegiatan himasi</h2>
+                </div>
+            </div>
+            <div class="offset-lg-3 col-lg-6">
+                <div class="section-heading">
+                    <p>Ini adalah kegiatan-kegiatan baik yang diadkan ataupun diikuti oleh Himpinanan Mahasiswa Sistem Informasi UBSI Kab. Karawang.</p>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="owl-carousel owl-theme">
                 <div class="item service-item">

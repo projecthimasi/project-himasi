@@ -1,32 +1,38 @@
-<!doctype html>
-<html lang="en">
+<div class="container mt-5" id="seminar">
+  <div class="display-4 text-center mb-4">Seminar & Workshop</div>
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow mb-5">
+        <div class="row">
+          <div class="col-md-6">
+            <img src="<?= base_url(); ?>assets/img/seminar/images.png" width="100%" alt="banner">
+          </div>
+          <div class="col-md-6">
+            <div class="card-body">
+              <h3 class="card-title mb-4">Seminar Kebangasaan</h3>
+              <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestiae blanditiis ipsam eligendi provident maiores praesentium doloremque libero tenetur, molestias illum expedita ad pariatur ducimus id voluptatem ea repellendus culpa quidem.</p>
+              <hr>
+              <div class="d-flex justify-content-around fs-6">
+                <div>
+                  <i class="fa-regular fa-calendar-days"></i> 12 Januari 2024
+                </div>
+                <div>
+                  <i class="fa-regular fa-clock"></i> 09.00 PM
+                </div>
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Bootstrap demo</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-</head>
+              </div>
+              <hr>
 
-<body>
-  <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
-    <div class="container">
-      <a class="navbar-brand" href="#">Navbar</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav ">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-          <a class="nav-link" href="#">Features</a>
-          <a class="nav-link" href="#">Pricing</a>
-          <a class="nav-link disabled">Disabled</a>
+              <a href="daftar" class="btn btn-custom mt-5">Daftar Sekarang</a>
+            </div>
+
+
+          </div>
         </div>
       </div>
-    </div>
-  </nav>
-  <h1>Hello, world!</h1>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-</body>
 
-</html>
+    </div>
+
+
+  </div>
+</div>
