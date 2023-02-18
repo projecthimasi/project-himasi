@@ -23,27 +23,17 @@ class Seminar extends CI_Controller
       $this->seminar = new Seminar_model;
       $this->pembayaran = new Pembayaran_model;
    }
-
    public function index()
    {
+      $data = [
+         'title' => 'Himasi | Seminar'
+      ];
 
-      $data['seminar'] = $this->seminar->getAll();
-      $this->load->view('test/seminar', $data);
+      $this->load->view('seminar/header', $data);
+      $this->load->view('seminar/index', $data);
+      $this->load->view('seminar/footer');
    }
-   public function daftar()
-   {
 
-
-      $this->load->library('form_validation');
-      $rules = $this->peserta->rule();
-      $this->form_validation->set_rules($rules);
-
-      if (!$this->form_validation->run()) {
-         return $this->load->view('test/daftar');
-      }
-
-      $this->proses_daftar();
-   }
 
    public function proses_daftar()
    {
@@ -87,5 +77,20 @@ class Seminar extends CI_Controller
       $data['pembayaran'] = $this->pembayaran->getByIdPeserta($this->peserta->id);
       $this->load->view('test/bayar', $data);
       // set data midtram
+
+   }
+
+
+
+
+   public function bayar()
+   {
+      $data = [
+         'title' => 'Invoice'
+      ];
+
+      $this->load->view('seminar/header', $data);
+      $this->load->view('seminar/tagihan', $data);
+      $this->load->view('seminar/footer');
    }
 }
