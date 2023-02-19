@@ -3,6 +3,18 @@
 
 class Respon extends CI_Controller
 {
+   private $pembayaran;
+   private $peserta;
+   public function __construct()
+   {
+      parent::__construct();
+      // $this->set_data();
+      $this->load->model('Pembayaran_model');
+      $this->load->model('Peserta_model');
+
+      $this->pembayaran = new pembayaran_model;
+      $this->peserta = new peserta_model;
+   }
 
    public function index()
    {
@@ -19,26 +31,38 @@ class Respon extends CI_Controller
 
 
 
-      $notif = new Midtrans\Notification();
+      $notification = new Midtrans\Notification();
+      $notif = $notification->getResponse();
+      $transaction = $notif->transaction_status;
       $no_invoice = $notif->order_id;
-      $kode       = $notif->status_code;
 
 
-
-      if ($kode == "200") {
-         $value = 'Lunas';
-         $invoice->updateStatus($no_invoice, $value);
-      } elseif ($kode == "201") {
-         $value = 'Pending';
-         $invoice->updateStatus($no_invoice, $value);
-      } elseif ($kode == "202") {
+      if ($transaction == 'settlement') {
+         // TODO set payment status in merchant's database to 'Settlement'
+         $this->pembayaran->updateBy_NoInvoice($no_invoice);
+      } else if ($transaction == 'pending') {
+         // TODO set payment status in merchant's database to 'Pending'
+      } else if ($transaction == 'deny') {
+         // TODO set payment status in merchant's database to 'Denied'
+      } else if ($transaction == 'expire') {
+         // TODO set payment status in merchant's database to 'expire'
+         $data_pembayaran = $this->pembayaran->getBy_NoInvoice($no_invoice);
+         $this->peserta->delete($data_pembayaran->id_peserta);
+      } else if ($transaction == 'cancel') {
+         // TODO set payment status in merchant's database to 'Denied'
+         echo "Payment using "  . " for transaction order_id: " . $no_invoice . " is canceled.";
       }
-   }
-   public function update()
-   {
-      $this->load->model("invoice_model");
-      $invoice = new Invoice_model;
-      $value = 'gagal';
-      $invoice->updateStatus('7628103594', $value);
+
+      die;
+
+
+
+      if ($status == "200") {
+      } elseif ($status == "settlement") {
+         return;
+      } elseif ($status == "expire") {
+         echo "masuk";
+         return;
+      }
    }
 }

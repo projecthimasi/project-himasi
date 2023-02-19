@@ -16,7 +16,7 @@
 </head>
 
 <body>
-   <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+   <nav class="navbar navbar-expand-lg fixed-top shadow">
       <div class="container">
          <a class="navbar-brand" href="#">
             <img src="<?= base_url(); ?>assets/img/logo.png" width="50px" alt="">
@@ -27,8 +27,10 @@
          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav ms-auto">
                <a class="nav-link active" aria-current="page" href="#">Home</a>
-               <a class="nav-link active" href="#">Features</a>
-               <a class="nav-link active" href="#">Pricing</a>
+               <a class="nav-link active" href="#">About</a>
+               <a class="nav-link active" href="#">Activity</a>
+               <a class="nav-link active" href="#">Gallery</a>
+               <a class="nav-link active" href="#">Seminar & Workshop</a>
             </div>
          </div>
       </div>

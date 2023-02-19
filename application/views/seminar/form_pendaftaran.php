@@ -7,17 +7,18 @@
                <h2 class="card-title text-center mb-4">
                   Form Pendaftaran
                </h2>
-               <form action="" method="post">
+               <form action="<?= base_url('seminar/daftar'); ?>" method="post" required>
+                  <input type="text" name="id_seminar" hidden value="<?= $this->uri->segment('3'); ?>">
                   <div class="row">
                      <div class="col-md-6">
                         <div class="form-floating mb-3">
-                           <input type="text" name="nama" class="form-control" id="nama">
+                           <input type="text" name="nama" class="form-control" id="nama" required>
                            <label for="nama">Nama Lengkap</label>
                         </div>
                      </div>
                      <div class="col-md-6">
                         <div class="form-floating mb-3">
-                           <input type="text" name="nim" class="form-control" id="nim">
+                           <input type="text" name="nim" class="form-control" id="nim" required>
                            <label for="nim">No. Induk mahasiswa</label>
                         </div>
 
@@ -26,8 +27,8 @@
                   <div class="row">
                      <div class="col-md-6">
                         <div class="form-floating mb-3">
-                           <select class="form-select" name="semester" id="semester" aria-label="Floating label select example">
-                              <option selected>-</option>
+                           <select class="form-select" name="semester" id="semester" aria-label="Floating label select example" required>
+                              <option></option>
                               <?php for ($i = 1; $i <= 5; $i++) { ?>
                                  <option value="<?= $i; ?>">Semester <?= $i; ?></option>
                               <?php } ?>
@@ -37,8 +38,8 @@
                      </div>
                      <div class="col-md-6">
                         <div class="form-floating mb-3">
-                           <select class="form-select" name="program_studi" id="prodi" aria-label="Floating label select example">
-                              <option selected>-</option>
+                           <select class="form-select" name="program_studi" id="prodi" aria-label="Floating label select example" required>
+                              <option></option>
                               <option value="Sistem Informasi">Sistem Informasi</option>
                               <option value="Sistem Informasi Akuntansi">Sistem Informasi Akuntansi</option>
                            </select>
@@ -48,8 +49,8 @@
                   </div>
 
                   <div class="form-floating mb-3">
-                     <select class="form-select" name="kampus" id="kampus" aria-label="Floating label select example">
-                        <option selected>-</option>
+                     <select class="form-select" name="kampus" id="kampus" aria-label="Floating label select example" required>
+                        <option></option>
                         <option value="Cikampek">Kampus Cikampek</option>
                         <option value="Karawang">Kampus Karawang</option>
                      </select>
@@ -60,6 +61,10 @@
                   <div class="form-floating mb-3">
                      <input type="email" name="email" class="form-control" id="email">
                      <label for="email">Email address</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                     <input type="text" name="no_tlp" class="form-control" id="no_tlp">
+                     <label for="no_tlp">No. Telepon</label>
                   </div>
                   <div class="d-grid gap-2 mt-5">
                      <button class="btn btn-primary" type="submit">Kirim</button>

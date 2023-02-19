@@ -3,6 +3,12 @@
 class Pembayaran_model extends CI_Model
 {
    private $data_peserta;
+   private $data_seminar;
+   private $data_htm;
+   private $no_invoice;
+
+   private $_table = 'pembayaran';
+
 
    public function __construct()
    {
@@ -15,41 +21,50 @@ class Pembayaran_model extends CI_Model
       \Midtrans\Config::$isSanitized = true;
       // Set 3DS transaction for credit card to true
       \Midtrans\Config::$is3ds = true;
-      $this->load->model('peserta_model');
-      $this->load->model('seminar_model');
    }
 
-   public function set_data($data)
-   {
-      $this->data_peserta = $data;
-   }
+
+
+
    public function simpan()
    {
+      $this->data_peserta = $this->Peserta_model->getByNim($this->input->post('nim'));
+      $this->data_seminar = $this->Seminar_model->getById($this->input->post('id_seminar'));
+      $this->data_htm = $this->Model_htm->getById_Seminar($this->input->post('id_seminar'));
+      $this->no_invoice = time();
+
+
+      // var_dump($this->data_peserta);
+      // echo "<br>";
+      // echo "<br>";
+      // var_dump($this->input->post());
+      // echo "<br>";
+      // echo "<br>";
+      // var_dump($this->data_seminar);
+
+      // die;
+
       $this->db->insert($this->_table, [
          'no_invoice' => $this->no_invoice,
-         'id_peserta' => $this->id_peserta,
-         'id_seminar' => $this->id_seminar,
-         'nominal' => $this->nominal,
-         'token_snap' => $this->token_snap
+         'id_peserta' => $this->data_peserta['id'],
+         'id_seminar' => $this->data_seminar['id'],
+         'nominal' => $this->data_htm['harga'],
+         'token_snap' => $this->buat_token_snap()
       ]);
    }
 
-   public function getByIdPeserta()
+   public function buat_token_snap()
    {
-      return $this->db->get_where($this->_table, array('id_peserta' => $this->id_peserta))->row_array();
-   }
 
-   public function buat_tagihan()
-   {
       $params = array(
          "transaction_details" => array(
             "order_id"     => $this->no_invoice,
-            "gross_amount" => $this->nominal,
+            "gross_amount" => $this->data_htm['harga'],
          ),
          "detail_item" => array(),
          "customer_details" => array(
-            "first_name" => $this->customer_name,
-            "phone"      => $this->customer_noHandphon,
+            "first_name" => $this->data_peserta['nama'],
+            "phone"      => $this->data_peserta['no_tlp'],
          ),
          "shopeepay" => array(
             "callback_url" => "http://shopeepay.com"
@@ -68,8 +83,7 @@ class Pembayaran_model extends CI_Model
       );
 
       $snapToken = \Midtrans\Snap::getSnapToken($params);
-
-      $this->token_snap = $snapToken;
+      return $snapToken;
    }
 
    public function updateStatus($value)
@@ -78,5 +92,19 @@ class Pembayaran_model extends CI_Model
          'status' => $value,
       );
       return $this->db->update($this->_table, $data, array('no_invoice' => $this->no_invoice));
+   }
+
+   public function getByIdPeserta($id_peserta)
+   {
+      return $this->db->get_where($this->_table, array('id_peserta' => $id_peserta))->row_array();
+   }
+
+   public function getBy_NoInvoice($no_invoice)
+   {
+      return $this->db->get_where($this->_table, array('no_invoice' => $no_invoice))->row_object();
+   }
+   public function updateBy_NoInvoice($no_invoice)
+   {
+      return $this->db->update($this->_table, ["status" => "lunas"], array('no_invoice' => $no_invoice));
    }
 }
