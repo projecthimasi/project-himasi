@@ -61,7 +61,7 @@ class Seminar extends CI_Controller
    public function pembayaran()
    {
       // menampilkan ke view 
-      $data['peserta'] = $this->peserta->getByEmail($this->session->userdata('email'));
+      $data['peserta'] = $this->peserta->getByEmail('muhammadjajaroyana3@gmail.com');
       $data['seminar'] = $this->seminar->getById(1);
       $data['pembayaran'] = $this->pembayaran->getByIdPeserta($data['peserta']['id']);
       $this->load->view('test/bayar', $data);

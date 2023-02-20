@@ -37,4 +37,18 @@ class Test extends CI_Controller
       $pendaftaran->set_data($data);
       var_dump($pendaftaran->is_exist());
    }
+
+   public function daftar_hadir()
+   {
+      $this->load->model('Model_daftar_hadir');
+      $daftar_hadir = new Model_daftar_hadir;
+      $data = [
+         "id_peserta" => 579,
+         "id_seminar" => 6878,
+         "status" => "Tidak Hadir",
+         "token_qr" => time()
+      ];
+
+      $daftar_hadir->tambah($data);
+   }
 }

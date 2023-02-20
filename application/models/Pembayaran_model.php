@@ -34,15 +34,7 @@ class Pembayaran_model extends CI_Model
       $this->no_invoice = time();
 
 
-      // var_dump($this->data_peserta);
-      // echo "<br>";
-      // echo "<br>";
-      // var_dump($this->input->post());
-      // echo "<br>";
-      // echo "<br>";
-      // var_dump($this->data_seminar);
 
-      // die;
 
       $this->db->insert($this->_table, [
          'no_invoice' => $this->no_invoice,
@@ -101,7 +93,7 @@ class Pembayaran_model extends CI_Model
 
    public function getBy_NoInvoice($no_invoice)
    {
-      return $this->db->get_where($this->_table, array('no_invoice' => $no_invoice))->row_object();
+      return $this->db->get_where($this->_table, array('no_invoice' => $no_invoice))->row_array();
    }
    public function updateBy_NoInvoice($no_invoice)
    {

@@ -29,9 +29,8 @@ class Peserta_model extends CI_Model
 
    public function getAll()
    {
-      return $this->db->get($this->_table)->row_array();
+      return $this->db->get($this->_table)->result_array();
    }
-
    public function getByNim($nim)
    {
       return $this->db->get_where($this->_table, array('nim' => $nim))->row_array();
@@ -40,12 +39,10 @@ class Peserta_model extends CI_Model
    {
       return $this->db->get_where($this->_table, array('email' => $email))->row_array();
    }
-
    public function getById($id)
    {
       return $this->db->get_where($this->_table, array('id' => $id))->row_array();
    }
-
    public function delete($id)
    {
       $this->db->delete($this->_table, array('id' => $id));
